@@ -90,11 +90,3 @@ Suggerimenti sui principi SOLID e Clean Code
 Debug e miglioramento del codice
 Supporto nella scrittura della documentazione
 
----
-
-👨‍💻 Autore
-
-Progetto sviluppato da:
-
-Studente: Sunisha Sunil Selvorious
-Matricola: 130130
