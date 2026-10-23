@@ -41,3 +41,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+save.json
+build/
+.gradle/
+.idea/
