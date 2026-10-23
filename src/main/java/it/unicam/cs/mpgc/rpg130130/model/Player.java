@@ -1,42 +1,23 @@
 package it.unicam.cs.mpgc.rpg130130.model;
 
 import it.unicam.cs.mpgc.rpg130130.item.Inventory;
+import it.unicam.cs.mpgc.rpg130130.item.Item;
 
-public class Player {
-    private String name;
-    private int hp;
-    private int attack;
-    private Inventory inventory;
+public class Player extends GameCharacter {
+    private final Inventory inventory = new Inventory();
 
-    public Player(String name, int hp, int attack) {
-        this.name = name;
-        this.hp = hp;
-        this.attack = attack;
-        this.inventory = new Inventory();
+    public Player(String name, int maxHp, int attack) {
+        super(name, maxHp, attack);
     }
 
-    public void takeDamage(int damage) {
-        hp -= damage;
-        if (hp < 0) {
-            hp = 0;
-        }
-    }
-
-    public boolean isAlive() {
-        return hp > 0;
-    }
-
+    @Override
     public int getAttack() {
-        return attack + inventory.getTotalBonus();
+        return super.getAttack() + inventory.getTotalBonus();
     }
 
-    public int getHp() {
-        return hp;
-    }
-    public void addItem(it.unicam.cs.mpgc.rpg130130.item.Item item) {
+    public void addItem(Item item) {
         inventory.addItem(item);
     }
-    public String getName() {
-        return name;
-    }
 }
+
+
