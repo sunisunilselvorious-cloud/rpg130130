@@ -1,34 +1,30 @@
 package it.unicam.cs.mpgc.rpg130130.combat;
 
-import it.unicam.cs.mpgc.rpg130130.model.Player;
 import it.unicam.cs.mpgc.rpg130130.model.Enemy;
+import it.unicam.cs.mpgc.rpg130130.model.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CombatSystem {
-    public void fight(Player player, Enemy enemy) {
+    private final CombatAction enemyAction;
 
-        System.out.println("Inizia il combattimento!");
-
-        while (player.isAlive() && enemy.isAlive()) {
-            // PLAYER ATTACCA
-            enemy.takeDamage(player.getAttack());
-            System.out.println("[ATTACCO] " + player.getName() + " attacca " + enemy.getName() +
-                    " -> HP nemico: " + enemy.getHp());
-
-            // NEMICO CONTRATTACCA
-            if (enemy.isAlive()) {
-                player.takeDamage(enemy.getAttack());
-                System.out.println("[DANNO] " + enemy.getName() +
-                        " contrattacca -> HP player: " + player.getHp());
-            }
-        }
-
-        // RISULTATO FINALE
-        if (player.isAlive()) {
-            System.out.println(player.getName() + " ha vinto!");
-        } else {
-            System.out.println(enemy.getName() + " ha vinto!");
-        }
-
-        }
+    public CombatSystem(CombatAction enemyAction) {
+        this.enemyAction = enemyAction;
     }
 
+    public BattleResult playTurn(Player player, Enemy enemy, CombatAction playerAction) {
+        List<AttackReport> reports = new ArrayList<>();
+        reports.add(playerAction.execute(player, enemy));
+        if (enemy.isAlive()) {
+            reports.add(enemyAction.execute(enemy, player));
+        }
+        return new BattleResult(List.copyOf(reports), stateOf(player, enemy));
+    }
+
+    public BattleState stateOf(Player player, Enemy enemy) {
+        if (!enemy.isAlive()) return BattleState.PLAYER_WON;
+        if (!player.isAlive()) return BattleState.PLAYER_LOST;
+        return BattleState.ONGOING;
+    }
+}
