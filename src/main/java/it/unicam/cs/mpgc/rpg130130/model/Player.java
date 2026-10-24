@@ -1,5 +1,6 @@
 package it.unicam.cs.mpgc.rpg130130.model;
 
+import it.unicam.cs.mpgc.rpg130130.item.Consumable;
 import it.unicam.cs.mpgc.rpg130130.item.Inventory;
 import it.unicam.cs.mpgc.rpg130130.item.Item;
 
@@ -12,11 +13,15 @@ public class Player extends GameCharacter {
 
     @Override
     public int getAttack() {
-        return super.getAttack() + inventory.getTotalBonus();
+        return super.getAttack() + inventory.getTotalAttackBonus();
     }
 
     public void addItem(Item item) {
-        inventory.addItem(item);
+        inventory.add(item);
+    }
+
+    public boolean use(Consumable consumable) {                       // nuovo metodo
+        return inventory.consume(consumable, this);
     }
 }
 
