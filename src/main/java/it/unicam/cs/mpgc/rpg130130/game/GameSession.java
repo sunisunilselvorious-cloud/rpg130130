@@ -56,7 +56,7 @@ public class GameSession {
 
     /** @return true se è stato trovato un salvataggio. Il nemico riparte da zero. */
     public boolean load() {
-        Optional<Player> loaded = Optional.ofNullable(repository.load());
+        Optional<Player> loaded = repository.load();
         loaded.ifPresent(p -> {
             player = p;
             enemy = enemyFactory.get();

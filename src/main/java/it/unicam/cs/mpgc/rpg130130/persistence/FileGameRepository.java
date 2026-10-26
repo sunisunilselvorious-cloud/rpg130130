@@ -3,34 +3,45 @@ package it.unicam.cs.mpgc.rpg130130.persistence;
 import com.google.gson.Gson;
 import it.unicam.cs.mpgc.rpg130130.model.Player;
 
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.UncheckedIOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Optional;
 
 public class FileGameRepository implements GameRepository {
+    private final Path file;
+    private final Gson gson = new Gson();
 
-    private static final String FILE_NAME = "save.json";
-    private Gson gson = new Gson();
+    public FileGameRepository() {
+        this(Path.of("save.json"));
+    }
+
+    public FileGameRepository(Path file) {
+        this.file = file;
+    }
 
     @Override
     public void save(Player player) {
-        try (FileWriter writer = new FileWriter(FILE_NAME)) {
-            gson.toJson(player, writer);
-            System.out.println("Gioco salvato in JSON!");
+        try (Writer writer = Files.newBufferedWriter(file)) {
+            gson.toJson(PlayerSnapshot.from(player), writer);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new UncheckedIOException("Impossibile salvare la partita", e);
         }
     }
 
     @Override
-    public Player load() {
-        try (FileReader reader = new FileReader(FILE_NAME)) {
-            Player player = gson.fromJson(reader, Player.class);
-            System.out.println("Gioco caricato!");
-            return player;
+    public Optional<Player> load() {
+        if (!Files.exists(file)) {
+            return Optional.empty();
+        }
+        try (Reader reader = Files.newBufferedReader(file)) {
+            return Optional.ofNullable(gson.fromJson(reader, PlayerSnapshot.class))
+                    .map(PlayerSnapshot::toPlayer);
         } catch (IOException e) {
-            System.out.println("Nessun salvataggio trovato!");
-            return null;
+            throw new UncheckedIOException("Impossibile caricare la partita", e);
         }
     }
 }

@@ -10,6 +10,9 @@ public class Player extends GameCharacter {
     public Player(String name, int maxHp, int attack) {
         super(name, maxHp, attack);
     }
+    public Player(String name, int maxHp, int hp, int attack) {
+        super(name, maxHp, hp, attack);
+    }
 
     @Override
     public int getAttack() {
@@ -24,5 +27,3 @@ public class Player extends GameCharacter {
         return inventory.consume(consumable, this);
     }
 }
-
-

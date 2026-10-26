@@ -123,8 +123,7 @@ public class GameUI extends Application {
         });
 
         loadButton.setOnAction(e -> {
-            Player loaded = repo.load();
-
+            Player loaded = repo.load().orElse(null);
             if (loaded != null) {
                 playerHolder[0] = loaded;
 
