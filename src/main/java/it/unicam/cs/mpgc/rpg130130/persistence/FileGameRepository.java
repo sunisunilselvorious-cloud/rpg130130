@@ -39,6 +39,7 @@ public class FileGameRepository implements GameRepository {
         }
         try (Reader reader = Files.newBufferedReader(file)) {
             return Optional.ofNullable(gson.fromJson(reader, PlayerSnapshot.class))
+                    .filter(snapshot -> snapshot.maxHp() > 0)
                     .map(PlayerSnapshot::toPlayer);
         } catch (IOException e) {
             throw new UncheckedIOException("Impossibile caricare la partita", e);
