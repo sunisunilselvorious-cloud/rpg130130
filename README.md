@@ -7,7 +7,7 @@ caricamento della partita.
 
 ## Esecuzione
 
-Richiede Java 21. Due comandi:
+Richiede Java 21. Ci sono due comandi:
 
     ./gradlew build
     ./gradlew run
