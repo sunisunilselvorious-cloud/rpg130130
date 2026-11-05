@@ -1,92 +1,26 @@
 # RPG130130
 
-📌 Descrizione
+Gioco di ruolo a turni in Java con interfaccia JavaFX, realizzato per il corso di
+Metodologie di Programmazione. Un eroe combatte contro un goblin: danni casuali con
+possibilità di colpo critico, barre degli HP, log del combattimento, salvataggio e
+caricamento della partita.
 
-Questo progetto consiste nello sviluppo di un'applicazione Java realizzata per il corso "Metodologie di Programmazione – Modellazione e Gestione della Conoscenza".
+## Esecuzione
 
-L’applicazione implementa un semplice Gioco di Ruolo (RPG) dotato di interfaccia grafica JavaFX, sistema di combattimento, gestione dell’inventario 
-e persistenza dei dati in formato JSON.
+Richiede Java 21. Due comandi:
 
----
+    ./gradlew build
+    ./gradlew run
 
-🎮 Funzionalità principali
+`build` esegue anche i test automatici.
 
-L’applicazione offre le seguenti funzionalità:
+## Documentazione
 
-Interfaccia grafica sviluppata con JavaFX
-Sistema di combattimento tra Player ed Enemy
-Gestione dei punti vita (HP) con barra grafica
-Sistema di inventario con bonus agli attacchi
-Salvataggio e caricamento dello stato del giocatore
-Possibilità di iniziare una nuova partita (New Game)
+Funzionalità, responsabilità delle classi, organizzazione dei dati e persistenza,
+meccanismi di estensione e limiti noti sono descritti nella Wiki del repository.
 
----
+## Uso di strumenti di AI
 
-💾 Persistenza dei dati
-
-La persistenza è gestita tramite file JSON (save.json) utilizzando la libreria Gson.
-
-Vengono salvati i principali attributi del Player:
-
-Nome
-Punti vita (HP)
-Attacco
-
----
-
-🧱 Struttura del progetto
-
-Il progetto è organizzato nei seguenti package:
-
-combat → logica di combattimento
-item → gestione inventario e oggetti
-model → entità principali (Player, Enemy)
-persistence → gestione del salvataggio/caricamento
-ui → interfaccia grafica
-
----
-
-🧠 Principi di progettazione
-
-Il progetto segue i principali principi SOLID:
-
-Single Responsibility → ogni classe ha una responsabilità ben definita
-Open/Closed → il sistema è estendibile senza modificare il codice esistente
-Dependency Inversion (parziale) → utilizzo dell’interfaccia GameRepository per la gestione della persistenza
-
----
-
-🚀 Estendibilità
-
-L’applicazione è progettata per supportare future estensioni, tra cui:
-
-Introduzione di nuovi nemici
-Aggiunta di nuovi oggetti nell’inventario
-Estensione del sistema di combattimento
-Possibile evoluzione verso versioni web o mobile
-⚙️ Tecnologie utilizzate
-Java 21
-JavaFX
-Gradle
-Gson (per la gestione della persistenza JSON)
-
----
-
-▶️ Esecuzione del progetto
-
-Per compilare ed eseguire il progetto utilizzare i seguenti comandi:
-
-./gradlew build
-./gradlew run
-
----
-
-🤖 Uso dell’AI
-
-Durante lo sviluppo sono stati utilizzati strumenti di AI (come ChatGPT) per:
-
-Supporto nella progettazione dell’architettura
-Suggerimenti sui principi SOLID e Clean Code
-Debug e miglioramento del codice
-Supporto nella scrittura della documentazione
-
+Nello sviluppo sono stati usati strumenti di AI (ChatGPT per la prima versione, Claude
+per il refactoring successivo al feedback del docente). La dichiarazione dettagliata,
+con scopo e limiti dell'uso, è nella pagina "Uso dell'AI" della Wiki.
