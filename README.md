@@ -22,5 +22,5 @@ meccanismi di estensione e limiti noti sono descritti nella Wiki del repository.
 ## Uso di strumenti di AI
 
 Nello sviluppo sono stati usati strumenti di AI (ChatGPT per la prima versione, Claude
-per il refactoring successivo al feedback del docente). La dichiarazione dettagliata,
-con scopo e limiti dell'uso, è nella pagina "Uso dell'AI" della Wiki.
+per il refactoring). 
+La dichiarazione dettagliata, con scopo limiti dell'uso, è nella pagina "Uso dell'AI" della Wiki.
